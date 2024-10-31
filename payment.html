@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Payment System</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fcf8f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .back{
+            display:inline-block;
+            color: #24c429;
+            scale: 2;
+text-shadow: 2px 1px 1px rgba(0, 0, 0, 0.446);
+        }
+
+        .container {
+            
+            width: 800px;
+            padding: 20px;
+            background-color: rgb(255, 255, 255);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .menu-item label {
+            font-size: 20px;
+        }
+
+        .menu-item input {
+            width: 60px;
+            text-align: center;
+        }
+
+        .total {
+            text-align: right;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        .payment {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .payment label {
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #24c429;
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #04fb10;
+        }
+
+        .success-message {
+            display: none;
+            color: rgb(14, 230, 14);
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <span class="back"><a href="file:///Users/sahidafridi/Library/Mobile%20Documents/com~apple~CloudDocs/AFRIDI.HTML/index.html">←</a></span>
+        <h1> Payment</h1>
+
+        <div class="menu">
+            <div class="menu-item">
+                <label for="burger">Burger ($10): </label>
+                <input type="number" id="burger" value="0" min="0" onchange="calculateTotal()">
+            </div>
+            <div class="menu-item">
+                <label for="pizza">Pizza ($12): </label>
+                <input type="number" id="pizza" value="0" min="0" onchange="calculateTotal()">
+            </div>
+            <div class="menu-item">
+                <label for="pasta">Pasta ($8): </label>
+                <input type="number" id="pasta" value="0" min="0" onchange="calculateTotal()">
+            </div>
+        </div>
+
+        <div class="total">
+            <strong>Total: $<span id="total-price">0</span></strong>
+        </div>
+
+        <div class="payment">
+            <label for="payment-method">Choose a payment method:</label>
+            <select id="payment-method">
+                <option value="credit-card">phone pe</option>
+                <option value="debit-card">google pay</option>
+                <option value="cash">Cash</option>
+            </select>
+        </div>
+
+        <button onclick="processPayment()"> <a href="9671326563@axl"> process to payment</a></button>
+
+        <div class="success-message" id="success-message">
+        </div>
+    </div>
+
+    <script>
+        const prices = {
+            burger: 10,
+            pizza: 12,
+            pasta: 8
+        };
+
+        function calculateTotal() {
+            let burgerQty = parseInt(document.getElementById("burger").value) || 0;
+            let pizzaQty = parseInt(document.getElementById("pizza").value) || 0;
+            let pastaQty = parseInt(document.getElementById("pasta").value) || 0;
+
+            let total = (burgerQty * prices.burger) + (pizzaQty * prices.pizza) + (pastaQty * prices.pasta);
+            document.getElementById("total-price").innerText = total;
+        }
+
+        function processPayment() {
+            let totalPrice = parseFloat(document.getElementById("total-price").innerText);
+            let paymentMethod = document.getElementById("payment-method").value;
+
+            if (totalPrice > 0) {
+                document.getElementById("success-message").style.display = 'block';
+            } else {
+                alert("Please select at least one item from the menu.");
+            }
+        }
+    </script>
+
+</body>
+</html>
